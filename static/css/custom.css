@@ -1,0 +1,35 @@
+/* your custom css */
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}
+
+/* #2d2d2d */
+.fixedHeaderContainer {
+    background: #2d2d2d;
+}
+
+h1, h2, h3, h4 {
+    color: #24292e;
+}
+
+.productShowcaseSection h2, .container .wrapper h2 {
+    color: #24292e;
+    font-weight: normal;
+}
+
+.button {
+    color: #24292e;
+    border: 1px solid #24292e;
+}
