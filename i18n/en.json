@@ -4,6 +4,8 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "Build canvas apps using Javascript and React",
+    "api": "easycanvas",
+    "easycanvas": "easycanvas",
     "doc1": "Latin-ish",
     "Example Page": "Example Page",
     "doc2": "document number 2",

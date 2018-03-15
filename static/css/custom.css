@@ -17,11 +17,26 @@
 
 /* #2d2d2d */
 .fixedHeaderContainer {
-    background: #2d2d2d;
+    background: rgb(34, 34, 34);
 }
+
 
 h1, h2, h3, h4 {
     color: #24292e;
+}
+
+.navigationSlider .slidingNav ul li a:focus, .navigationSlider .slidingNav ul li a:hover, .navigationSlider .slidingNav ul li.siteNavItemActive a, .navigationSlider .slidingNav ul li.siteNavGroupActive a {
+    background: none;
+}
+
+nav.toc .toggleNav .navGroup.navGroupActive h3 {
+    background: #24292e;
+}
+
+nav.toc .toggleNav ul li a:hover, 
+nav.toc .toggleNav ul li a:focus,
+nav.toc .toggleNav ul li a.navItemActive {
+    color: #333333;
 }
 
 .productShowcaseSection h2, .container .wrapper h2 {
