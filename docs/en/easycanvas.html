@@ -1,0 +1,294 @@
+<html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Easycanvas · React Canvas</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta property="og:title" content="Easycanvas · React Canvas"/><meta property="og:type" content="website"/><meta property="og:url" content="https://facebook.github.io/index.html"/><meta property="og:description" content="![https://github.com/chenzhuo1992/easycanvas/blob/master/demos/index.html](https://github.com/chenzhuo1992/easycanvas/blob/master/demos/index.gif?raw=true)"/><link rel="shortcut icon" href="/img/favicon.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/css/main.css"/></head><body class="sideNavVisible doc"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/en"><img class="logo" src="/img/docusaurus.svg"/><h2 class="headerTitle">React Canvas</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/en/guide.html" target="_self">Guide</a></li><li class=""><a href="/docs/en/api.html" target="_self">API</a></li><li class="siteNavItemActive"><a href="/docs/en/easycanvas.html" target="_self">EasyCanvas</a></li><li class=""><a href="/en/help.html" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1>Easycanvas</h1></header><article><div><span><p><img src="https://github.com/chenzhuo1992/easycanvas/blob/master/demos/index.gif?raw=true" alt="https://github.com/chenzhuo1992/easycanvas/blob/master/demos/index.html"></p>
+<h2><a class="anchor" aria-hidden="true" id=""></a><a href="#" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>如何开始</h2>
+<p>引入Easycanvas并绑定到一个Canvas标签上：</p>
+<pre><code class="hljs">    <span class="hljs-keyword">import</span> EasyCanvas from <span class="hljs-string">'easycanvas'</span>;
+
+    <span class="hljs-comment">// 创建一个Easycanvas实例</span>
+    <span class="hljs-built_in">var</span> $Painter = <span class="hljs-literal">new</span> EasyCanvas.painter();
+
+    <span class="hljs-comment">// 将实例绑定到dom上（必须是canvas标签）</span>
+    $Painter.register(document.getElementById(<span class="hljs-string">'foo'</span>));
+
+    <span class="hljs-comment">// 开始Easycanvas渲染</span>
+    $Painter.start();
+</code></pre>
+<p><code>register</code>方法可以传入一些全局事件监听方法，以及设置最大FPS、自定义FPS监听的方法，将在后续介绍。
+一旦<code>register</code>被调用，Easycanvas将缓存相应dom元素的宽高，所以如果希望设置一个指定尺寸的Canvas，可以这样：</p>
+<pre><code class="hljs">    <span class="hljs-keyword">let</span> $app = document.getElementById(<span class="hljs-string">'app'</span>);
+
+    <span class="hljs-comment">// 也可以在css和html中对Canvas进行宽高设置。</span>
+    $app.style.width = w;
+    $app.style.height = h;
+    $app.width = w * <span class="hljs-number">2</span>;
+    $app.height = h * <span class="hljs-number">2</span>;        
+
+    <span class="hljs-built_in">var</span> $Doc = <span class="hljs-literal">new</span> Easycanvas.painter();
+
+    $Doc.register($app);
+</code></pre>
+<p>Tips: html中的宽高代表Canvas的像素尺寸，css中的宽高代表Canvas的展示尺寸。一些屏幕下，让像素尺寸二倍于展示尺寸，可以有效避免文字模糊。如果你的Canvas只渲染图片，那么没有必要这么做。</p>
+<p>这样就得到了一个空白的实例，它不包含任何容器、可绘制的图像和文本。</p>
+<h2><a class="anchor" aria-hidden="true" id=""></a><a href="#" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>添加图片元素</h2>
+<p>Easycanvas最常用的API就是<code>add</code>方法，用于向实例添加一个元素。元素的样式、内容、事件、滚动等属性全部可以在<code>add</code>时设置，也可以之后后设置。例如：</p>
+<pre><code class="hljs">    <span class="hljs-keyword">var</span> $Painter = <span class="hljs-keyword">new</span> EasyCanvas.painter();
+
+    EasyCanvas.imgLoader(<span class="hljs-string">'./G.png'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(img)</span> </span>{
+        <span class="hljs-keyword">var</span> sprite1 = $Painter.add({
+            content: {
+                img: img,
+            },
+            style: {
+                tx: <span class="hljs-number">200</span>,
+                ty: <span class="hljs-number">100</span>,
+            }
+        });
+
+        sprite1.style.tx = <span class="hljs-number">150</span>;
+    });
+</code></pre>
+<p>'sprite1'是一个<code>sprite</code>实例，上例等同于：</p>
+<pre><code class="hljs">    <span class="hljs-keyword">var</span> $Painter = <span class="hljs-keyword">new</span> EasyCanvas.painter();
+
+    EasyCanvas.imgLoader(<span class="hljs-string">'./G.png'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(img)</span> </span>{
+        <span class="hljs-keyword">var</span> sprite1 = <span class="hljs-keyword">new</span> Easycanvas.class.sprite({
+            content: {
+                img: img,
+            },
+            style: {
+                tx: <span class="hljs-number">200</span>,
+                ty: <span class="hljs-number">100</span>,
+            }
+        });
+
+        sprite1.style.tx = <span class="hljs-number">150</span>;
+
+        $Painter.add(sprite1);
+    });
+</code></pre>
+<p><code>EasyCanvas.imgLoader</code>将立即返回一个Image对象。此时图片还未加载完成，它的回调将在图片加载完成后触发。imgLoader的其它功能将在后面叙述。</p>
+<p>这样相当于创建了一个 <code>&lt;img src=&quot;./G.png&quot;&gt;</code> 元素，并且具备以下样式：</p>
+<pre><code class="hljs">    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">200</span>;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">100</span>;
+    <span class="hljs-attribute">transform</span>: translateX(-<span class="hljs-number">50%</span>) translateY(-<span class="hljs-number">50%</span>);
+</code></pre>
+<p>默认情况下，图片将以目标坐标<code>(200, 100)</code>为中心进行渲染。如果想去掉这个transform，可以设置<code>style</code>的<code>locate</code>属性为'lt'。“默认以中心”绘制的好处是，如果有一个按钮想放在水平居中的位置，可以直接设置<code>tx</code>为屏幕宽的1/2，而不需要关心按钮本身的尺寸。例如下面两种方式的效果是相同的：</p>
+<pre><code class="hljs">    style: {
+        tx: <span class="hljs-variable">$Painter</span><span class="hljs-selector-class">.width</span> / <span class="hljs-number">2</span>,
+        ty: <span class="hljs-number">300</span>
+    }
+
+    style: {
+        tx: <span class="hljs-variable">$Painter</span><span class="hljs-selector-class">.width</span> / <span class="hljs-number">2</span> - this<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.img</span><span class="hljs-selector-class">.width</span> / <span class="hljs-number">2</span>,
+        ty: <span class="hljs-number">300</span> - this<span class="hljs-selector-class">.content</span><span class="hljs-selector-class">.img</span><span class="hljs-selector-class">.height</span> / <span class="hljs-number">2</span>,
+        locate: <span class="hljs-string">'lt'</span>
+    }
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id=""></a><a href="#" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>设置动画</h2>
+<p>Easycanvas中所有的动画都是通过<code>style</code>的变换实现的。比如，可以设置<code>style</code>中的某个样式为一个方法：</p>
+<pre><code class="hljs">    <span class="hljs-selector-tag">style</span>: {
+        <span class="hljs-attribute">tx</span>: function () {
+            return new <span class="hljs-built_in">Date</span>().<span class="hljs-built_in">getTime</span>() % <span class="hljs-number">500</span>;
+        }
+    }
+</code></pre>
+<p>或者使用Easycanvas自带的<code>transition</code>:</p>
+<pre><code class="hljs">    <span class="hljs-selector-tag">style</span>: {
+        <span class="hljs-attribute">tx</span>: Easycanvas.transition.<span class="hljs-built_in">linear</span>(100, 600, 1000),
+        ty: Easycanvas.transition.<span class="hljs-built_in">linear</span>(300, 400, 1000).<span class="hljs-built_in">loop</span>(),
+    }
+</code></pre>
+<p>或者引入Tween.js等第三方实现：</p>
+<pre><code class="hljs">    TWEEN.onUpdate(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(obj)</span> </span>{
+        sprite1.style.tx = obj.tx;
+    });
+</code></pre>
+<p>或者在每帧的钩子中动态修改style属性（其它钩子在后面介绍）：</p>
+<pre><code class="hljs">    <span class="hljs-selector-tag">style</span>: {
+        <span class="hljs-attribute">tx</span>: <span class="hljs-number">100</span>
+    },
+    <span class="hljs-selector-tag">hooks</span>: {
+        <span class="hljs-attribute">ticked</span>: function () {
+            this.style.tx++;
+        }
+    },
+</code></pre>
+<p>或者自己setInterval :)</p>
+<h2><a class="anchor" aria-hidden="true" id=""></a><a href="#" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>事件响应</h2>
+<p>目前Easycanvas支持了几乎全部的浏览器事件，甚至包括滑轮的滚动（不支持滑轮按下，这事件真的有人用？）。此外拓展了<code>hold</code>事件，在长按时会连续触发。如下：</p>
+<pre><code class="hljs">    <span class="hljs-keyword">var</span> $Painter = <span class="hljs-keyword">new</span> EasyCanvas.painter();
+    EasyCanvas.imgLoader(<span class="hljs-string">'./G.png'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(img)</span> </span>{
+        <span class="hljs-keyword">var</span> sprite1 = $Painter.add({
+            content: {
+                img: img,
+            },
+            style: {
+                tx: <span class="hljs-number">200</span>,
+                ty: <span class="hljs-number">100</span>,
+            },
+            events: {
+                eIndex: <span class="hljs-number">1</span>,
+                click: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> </span>{
+                    <span class="hljs-keyword">this</span>.style.tx = e.canvasX;
+                    <span class="hljs-keyword">this</span>.style.ty = e.event.layerY;
+                }
+            },
+        });
+    });
+</code></pre>
+<p>'this'将指向'sprite1'，'e.event'对应了浏览器的'Event'，而'e.canvasX'代表当前Canvas中的坐标。如果你的Canvas渲染尺寸和Canvas的像素尺寸不同，'canvasX'会更方便。</p>
+<p>事件将按照<code>eIndex</code>从大到小的顺序进行传递，如果某个事件'return true'，那么将中止事件的传递。否则，事件将一直“冒泡”到canvas实例。下例展示了如何在实例根节点处理事件：</p>
+<pre><code class="hljs">    $Painter.register(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'foo'</span>), {
+        <span class="hljs-attr">events</span>: {
+            <span class="hljs-attr">touchmove</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+                e.event.preventDefault();
+            }
+        }
+    });
+</code></pre>
+<p>此外，可以设置<code>through</code>为false来关闭某个元素的事件透传。这样相当于为所有事件增加'return true'。</p>
+<h2><a class="anchor" aria-hidden="true" id=""></a><a href="#" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>状态钩子</h2>
+<p>Easycanvas支持的状态钩子包括：<code>ticked</code>、<code>removed</code>、<code>beforeTick</code>。</p>
+<pre><code class="hljs">    <span class="hljs-keyword">var</span> box = <span class="hljs-keyword">new</span> Easycanvas.class.sprite({
+        content: {
+            img: img,
+        },
+        hooks: {
+            ticked: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                <span class="hljs-comment">// 每帧执行一次，在渲染后调用</span>
+            },
+            removed: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+                <span class="hljs-comment">// 元素被remove方法移除后调用</span>
+            },
+        },
+    });
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="api"></a><a href="#api" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>基础API列表</h2>
+<p><code>content</code>中目前支持<code>img</code>和<code>text</code>属性，传入image对象和string文本。</p>
+<p><code>style</code>中目前支持以下属性：</p>
+<pre><code class="hljs">    tx, ty, tw, th: 目标坐标的left, top位置和<span class="hljs-built_in">width</span>, <span class="hljs-built_in">height</span>尺寸
+    // 支持整数、Function（每帧调用一次，需要<span class="hljs-built_in">return</span>出结果）
+
+    sx, sy: 当<span class="hljs-built_in">content</span>.img存在时，代表源图片的起始坐标（参考原生Canvas.drawImage）
+    sw, th: 当<span class="hljs-built_in">content</span>.img存在时，代表源图片的裁取尺寸（参考原生Canvas.drawImage）
+    // 支持整数、Function（每帧调用一次，需要<span class="hljs-built_in">return</span>出结果）
+
+    locate: 目标矩形的布局方式，支持lt、<span class="hljs-built_in">center</span>、rd（类似css的<span class="hljs-built_in">translate</span>）
+    <span class="hljs-built_in">scale</span>: 目标矩形的缩放尺寸（类似css的<span class="hljs-built_in">scale</span>）
+    <span class="hljs-built_in">opacity</span>: 目标矩形的透明度（类似css的<span class="hljs-built_in">opacity</span>）
+    zIndex: 目标矩形的渲染层次（类似css的zIndex）
+
+    // 下列属性仅当<span class="hljs-built_in">content</span>内存在text内容时生效
+    textAlign: 代表文字水平对齐方式（类似css的text-align）
+    textFont: 代表文字的样式，例如'14px Arial'
+    textVerticalAlign: 代表文字的垂直对齐方式（类似css的vertical-align）
+    <span class="hljs-built_in">color</span>: 代表文字的颜色（类似css的<span class="hljs-built_in">color</span>）
+    lineHeight: 代表文字的行高（类似css的lineHeight，单位限制为像素）
+    // 对齐、颜色的可选值参考css
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id=""></a><a href="#" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>元素嵌套</h2>
+<p>Easycanvas可以通过<code>children</code>属性设置子元素，从而实现元素嵌套，如：</p>
+<pre><code class="hljs">    <span class="hljs-string">var</span> <span class="hljs-string">$Painter</span> <span class="hljs-string">=</span> <span class="hljs-string">new</span> <span class="hljs-string">Easycanvas.painter();</span>
+    <span class="hljs-string">$Painter.register(document.getElementById('foo'));</span>
+    <span class="hljs-string">$Painter.start();</span>
+
+    <span class="hljs-string">Easycanvas.imgLoader('https://github.com/chenzhuo1992/easycanvas/blob/master/demos/G30x30.png?raw=true',</span> <span class="hljs-string">function</span> <span class="hljs-string">(img)</span> <span class="hljs-string">{</span>
+        <span class="hljs-string">//</span> <span class="hljs-string">create</span> <span class="hljs-string">a</span> <span class="hljs-string">sprite</span>
+        <span class="hljs-string">var</span> <span class="hljs-string">sprite1</span> <span class="hljs-string">=</span> <span class="hljs-string">$Painter.add({</span>
+<span class="hljs-attr">            content:</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">                img:</span> <span class="hljs-string">img,</span>
+            <span class="hljs-string">},</span>
+<span class="hljs-attr">            style:</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">                tx:</span> <span class="hljs-number">100</span><span class="hljs-string">,</span> <span class="hljs-attr">ty:</span> <span class="hljs-number">100</span><span class="hljs-string">,</span>
+<span class="hljs-attr">                locate:</span> <span class="hljs-string">'lt'</span><span class="hljs-string">,</span>
+<span class="hljs-attr">                opacity:</span> <span class="hljs-number">0.5</span><span class="hljs-string">,</span>
+<span class="hljs-attr">                rotate:</span> <span class="hljs-number">40</span><span class="hljs-string">,</span>
+            <span class="hljs-string">},</span>
+
+<span class="hljs-attr">            children:</span> <span class="hljs-string">[</span>
+                <span class="hljs-string">{</span>
+<span class="hljs-attr">                    content:</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">                        img:</span> <span class="hljs-string">img,</span>
+                    <span class="hljs-string">},</span>
+<span class="hljs-attr">                    inherit:</span> <span class="hljs-string">['opacity'],</span>
+<span class="hljs-attr">                    style:</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">                        tx:</span> <span class="hljs-number">500</span><span class="hljs-string">,</span> <span class="hljs-attr">ty:</span> <span class="hljs-number">0</span><span class="hljs-string">,</span>
+<span class="hljs-attr">                        zIndex:</span> <span class="hljs-number">1</span><span class="hljs-string">,</span>
+<span class="hljs-attr">                        opacity:</span> <span class="hljs-number">0.5</span><span class="hljs-string">,</span>
+<span class="hljs-attr">                        locate:</span> <span class="hljs-string">'center'</span><span class="hljs-string">,</span>
+                    <span class="hljs-string">},</span>
+                <span class="hljs-string">},</span>
+                <span class="hljs-string">{</span>
+<span class="hljs-attr">                    inherit:</span> <span class="hljs-string">['tx',</span> <span class="hljs-string">'ty'</span><span class="hljs-string">,</span> <span class="hljs-string">'rotate'</span><span class="hljs-string">],</span>
+<span class="hljs-attr">                    content:</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">                        img:</span> <span class="hljs-string">img,</span>
+                    <span class="hljs-string">},</span>
+<span class="hljs-attr">                    style:</span> <span class="hljs-string">{</span>
+<span class="hljs-attr">                        tx:</span> <span class="hljs-number">500</span><span class="hljs-string">,</span> <span class="hljs-attr">ty:</span> <span class="hljs-number">500</span><span class="hljs-string">,</span>
+<span class="hljs-attr">                        opacity:</span> <span class="hljs-number">0.7</span><span class="hljs-string">,</span>
+<span class="hljs-attr">                        zIndex:</span> <span class="hljs-number">1</span><span class="hljs-string">,</span>
+<span class="hljs-attr">                        locate:</span> <span class="hljs-string">'center'</span><span class="hljs-string">,</span>
+                    <span class="hljs-string">},</span>
+                <span class="hljs-string">},</span>
+            <span class="hljs-string">],</span>
+        <span class="hljs-string">});</span>
+    <span class="hljs-string">});</span>
+</code></pre>
+<p>或者可以动态插入子元素：</p>
+<pre><code class="hljs">    <span class="hljs-built_in">var</span> parent = <span class="hljs-built_in">new</span> Easycanvas.class.sprite({
+        <span class="hljs-built_in">content</span>: {
+            img: <span class="hljs-built_in">box</span>,
+        },
+    });
+    <span class="hljs-built_in">var</span> child = <span class="hljs-built_in">new</span> Easycanvas.class.sprite({
+        <span class="hljs-built_in">content</span>: {
+            img: ball,
+        },
+    });
+    parent.add(child);
+    parent.<span class="hljs-built_in">remove</span>(child); // <span class="hljs-keyword">or</span> child.<span class="hljs-built_in">remove</span>();
+</code></pre>
+<p>默认情况下，<code>tx</code>、<code>ty</code>和<code>scale</code>是继承的。例如一个tx为100的元素，某个child的tx为50，那么实际渲染的横坐标就是150。可以通过<code>inherit</code>来设置哪些属性从父级继承，例如：</p>
+<pre><code class="hljs">    <span class="hljs-keyword">var</span> child = <span class="hljs-keyword">new</span> Easycanvas.<span class="hljs-keyword">class</span>.sprite({
+        content: {
+            img: ball,
+        },
+        inherit: [<span class="hljs-string">'tx'</span>, <span class="hljs-string">'ty'</span>, <span class="hljs-string">'locate'</span>, <span class="hljs-string">'rotate'</span>]
+    });
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id=""></a><a href="#" aria-hidden="true" class="hash-link" ><svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>精灵动画</h2>
+<p>下面这个示例展示了如何通过全局的点击事件来动态创建元素，并且将一个9帧拼接成的序列图转换为动画展示。</p>
+<pre><code class="hljs">    <span class="hljs-keyword">var</span> $Painter = <span class="hljs-keyword">new</span> Easycanvas.painter();
+    $Painter.register(document.getElementById(<span class="hljs-string">'foo'</span>), {
+        events: {
+            click: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(e)</span> </span>{
+                $Painter.add(createFire(e.canvasX, e.canvasY));
+            }
+        }
+    });
+
+    <span class="hljs-keyword">var</span> Fire = Easycanvas.imgLoader(https:<span class="hljs-comment">//github.com/chenzhuo1992/easycanvas/blob/master/demos/Fire.png?raw=true);</span>
+
+    <span class="hljs-keyword">var</span> createFire = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(initX, initY)</span> </span>{
+        <span class="hljs-keyword">return</span> {
+            content: {
+                img: Fire,
+                <span class="hljs-comment">// 'sequence'可以将一个多帧拼成的图片拆成多帧播放</span>
+                <span class="hljs-comment">// 指定每帧在图片文件上的尺寸，-9代表图片宽度的1/9，相当于'Fire.width / 9'</span>
+                sequence: {
+                    w: <span class="hljs-number">-9</span>,
+                    h: <span class="hljs-number">-1</span>,
+                    interval: <span class="hljs-number">50</span>,
+                    loop: <span class="hljs-keyword">false</span>
+                }
+            },
+
+            style: {
+                tx: initX, ty: initY,
+            },
+        };
+    };
+
+    $Painter.start();
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/docusaurus.svg" alt="React Canvas" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/en/users.html">User Showcase</a><a href="http://stackoverflow.com/questions/tagged/" target="_blank">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" href="https://github.com/facebook/test-site" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://code.facebook.com/projects/" target="_blank" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2018 Facebook Inc.</section></footer></div></body></html>
