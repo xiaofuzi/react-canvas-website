@@ -1,0 +1,9 @@
+{
+  "docs": {
+    "Guide": ["guide", "gettingstarted", "thebasics"],
+    "API": ["api"]
+  },
+  "docs-other": {
+    "First Category": ["doc4", "doc5"]
+  }
+}

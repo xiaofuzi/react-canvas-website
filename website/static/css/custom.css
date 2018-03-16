@@ -39,12 +39,30 @@ nav.toc .toggleNav ul li a.navItemActive {
     color: #333333;
 }
 
+.homeContainer {
+    color: #ffffff;
+    background: #24292e;
+}
+
+.homeContainer h2 {
+    color: #ffffff;
+} 
+
+.homeContainer h2 small {
+    color: #8590a6;
+} 
+
+.homeContainer h3 {
+    color: #ffffff;
+}
+
 .productShowcaseSection h2, .container .wrapper h2 {
     color: #24292e;
     font-weight: normal;
 }
 
 .button {
-    color: #24292e;
-    border: 1px solid #24292e;
+    color: #ffffff;
+    border: 1px solid #ffffff;
 }
+

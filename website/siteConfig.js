@@ -19,13 +19,14 @@ const siteConfig = {
   title: 'React Canvas' /* title for your website */,
   tagline: 'Build canvas apps using Javascript and React',
   url: 'https://facebook.github.io' /* your website url */,
-  baseUrl: '/test-site/' /* base url for your project */,
+  baseUrl: '/' /* base url for your project */,
   projectName: 'react-canvas',
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
+    {doc: 'guide', label: 'Guide'},
     {doc: 'api', label: 'API'},
+    {doc: 'easycanvas', label: 'EasyCanvas'},
     {page: 'help', label: 'Help'},
-    {blog: true, label: 'Blog'},
+    // {blog: true, label: 'Blog'},
   ],
   users,
   /* path to images for header/footer */
@@ -53,8 +54,8 @@ const siteConfig = {
     'Copyright © ' +
     new Date().getFullYear() +
     ' Your Name or Your Company Name',
-  // organizationName: 'deltice', // or set an env variable ORGANIZATION_NAME
-  // projectName: 'test-site', // or set an env variable PROJECT_NAME
+  organizationName: 'xiaofuzi', // or set an env variable ORGANIZATION_NAME
+  projectName: 'react-canvas-website', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
     theme: 'default',

@@ -71,18 +71,20 @@ const PromoSection = props => (
   </div>
 );
 
+/*
+<Button href="#try">Try It Out</Button>
+            <Button href={docUrl('doc1.html', language)}>Example Link</Button>
+            <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
+*/
 class HomeSplash extends React.Component {
   render() {
     let language = this.props.language || '';
     return (
       <SplashContainer>
-        <Logo img_src={imgUrl('docusaurus.svg')} />
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html', language)}>Example Link</Button>
-            <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
+              Coming soon!
           </PromoSection>
         </div>
       </SplashContainer>
@@ -103,16 +105,16 @@ const Features = props => (
   <Block layout="fourColumn">
     {[
       {
-        content: 'This is the content of my feature',
+        content: 'Declarative views make your code more predictable and easier to debug.',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
-        title: 'Feature One',
+        title: 'Declarative',
       },
       {
-        content: 'The content of my second feature',
+        content: 'Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
-        title: 'Feature Two',
+        title: 'Component-Based',
       },
     ]}
   </Block>
@@ -131,10 +133,10 @@ const LearnHow = props => (
   <Block background="light">
     {[
       {
-        content: 'Talk about learning how to use this',
+        content: 'easy to learn and use.',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'right',
-        title: 'Learn How',
+        title: 'Functional',
       },
     ]}
   </Block>
@@ -157,7 +159,7 @@ const Description = props => (
   <Block background="dark">
     {[
       {
-        content: 'This is another description of how this project is useful',
+        content: 'the framework of canvas app.',
         image: imgUrl('docusaurus.svg'),
         imageAlign: 'right',
         title: 'Description',
@@ -198,6 +200,7 @@ const Showcase = props => {
 
 class Index extends React.Component {
   render() {
+    console.log(this.props)
     let language = this.props.language || '';
 
     return (
@@ -206,8 +209,6 @@ class Index extends React.Component {
         <div className="mainContainer">
           <Features />
           <FeatureCallout />
-          <LearnHow />
-          <TryOut />
           <Description />
           <Showcase language={language} />
         </div>
@@ -215,5 +216,11 @@ class Index extends React.Component {
     );
   }
 }
+
+/**
+          <LearnHow />
+          <TryOut />
+          
+*/
 
 module.exports = Index;
