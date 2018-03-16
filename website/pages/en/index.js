@@ -12,6 +12,7 @@ const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
+
 const siteConfig = require(process.cwd() + '/siteConfig.js');
 
 function imgUrl(img) {
@@ -24,6 +25,24 @@ function docUrl(doc, language) {
 
 function pageUrl(page, language) {
   return siteConfig.baseUrl + (language ? language + '/' : '') + page;
+}
+
+// const ParticleJS = require('particles.js');
+
+class ParticleComponent extends React.Component {
+    constructor (props) {
+        super(props);
+    }
+
+    render () {
+        return (<div 
+            ref={(dom) =>{ this.$dom = dom }}
+            className="particle-container" id='particleEl'></div>);
+    }
+
+    componentDidMount () {
+        console.log(this.$dom);
+    }
 }
 
 class Button extends React.Component {
@@ -47,6 +66,7 @@ const SplashContainer = props => (
     <div className="homeSplashFade">
       <div className="wrapper homeWrapper">{props.children}</div>
     </div>
+    <ParticleComponent></ParticleComponent>
   </div>
 );
 
@@ -200,7 +220,6 @@ const Showcase = props => {
 
 class Index extends React.Component {
   render() {
-    console.log(this.props)
     let language = this.props.language || '';
 
     return (

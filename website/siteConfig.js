@@ -30,12 +30,12 @@ const siteConfig = {
   ],
   users,
   /* path to images for header/footer */
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
+  // headerIcon: 'img/docusaurus.svg',
+  // footerIcon: 'img/docusaurus.svg',
   favicon: 'img/favicon.png',
   /* colors for website */
   colors: {
-    primaryColor: '#2E8555',
+    primaryColor: '#005068',
     secondaryColor: '#205C3B',
   },
   /* custom fonts for website */
@@ -60,7 +60,7 @@ const siteConfig = {
     // Highlight.js theme to use for syntax highlighting in code blocks
     theme: 'default',
   },
-  scripts: ['https://buttons.github.io/buttons.js'],
+  scripts: ['https://buttons.github.io/buttons.js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/particles.min.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
   repoUrl: 'https://github.com/facebook/test-site',
   /* On page navigation for the current documentation page */

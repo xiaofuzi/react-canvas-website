@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "docusaurus": "^1.0.9"
+  },
+  "dependencies": {
+    "particles.js": "^2.0.0"
   }
 }
