@@ -27,24 +27,6 @@ function pageUrl(page, language) {
   return siteConfig.baseUrl + (language ? language + '/' : '') + page;
 }
 
-// const ParticleJS = require('particles.js');
-
-class ParticleComponent extends React.Component {
-    constructor (props) {
-        super(props);
-    }
-
-    render () {
-        return (<div 
-            ref={(dom) =>{ this.$dom = dom }}
-            className="particle-container" id='particleEl'></div>);
-    }
-
-    componentDidMount () {
-        console.log(this.$dom);
-    }
-}
-
 class Button extends React.Component {
   render() {
     return (
@@ -66,7 +48,6 @@ const SplashContainer = props => (
     <div className="homeSplashFade">
       <div className="wrapper homeWrapper">{props.children}</div>
     </div>
-    <ParticleComponent></ParticleComponent>
   </div>
 );
 
@@ -104,7 +85,7 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-              Coming soon!
+              <Button href={docUrl('gettingstarted.html', language)}>Getting started</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -126,13 +107,13 @@ const Features = props => (
     {[
       {
         content: 'Declarative views make your code more predictable and easier to debug.',
-        image: imgUrl('docusaurus.svg'),
+        // image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
         title: 'Declarative',
       },
       {
         content: 'Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.',
-        image: imgUrl('docusaurus.svg'),
+        // image: imgUrl('docusaurus.svg'),
         imageAlign: 'top',
         title: 'Component-Based',
       },
@@ -228,9 +209,7 @@ class Index extends React.Component {
         <div className="mainContainer">
           <Features />
           <FeatureCallout />
-          <Description />
-          <Showcase language={language} />
-        </div>
+                  </div>
       </div>
     );
   }
@@ -239,6 +218,9 @@ class Index extends React.Component {
 /**
           <LearnHow />
           <TryOut />
+          <Description />
+          <Showcase language={language} />
+
           
 */
 

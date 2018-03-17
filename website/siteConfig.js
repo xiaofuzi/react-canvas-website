@@ -17,15 +17,14 @@ const users = [
 
 const siteConfig = {
   title: 'React Canvas' /* title for your website */,
-  tagline: 'Build canvas apps using Javascript and React',
-  url: 'https://facebook.github.io' /* your website url */,
+  tagline: 'Build canvas apps and 2d games with React',
+  url: 'http: //react-canvas.com' /* your website url */,
   baseUrl: '/' /* base url for your project */,
   projectName: 'react-canvas',
   headerLinks: [
-    {doc: 'guide', label: 'Guide'},
-    {doc: 'api', label: 'API'},
-    {doc: 'easycanvas', label: 'EasyCanvas'},
-    {page: 'help', label: 'Help'},
+    {doc: 'gettingstarted', label: 'Docs'},
+    {href: 'https://github.com/chenzhuo1992/easycanvas', label: 'EasyCanvas', external: true},
+    {href: 'https://github.com/xiaofuzi/react-canvas-website', label: 'Github', external: true},
     // {blog: true, label: 'Blog'},
   ],
   users,
@@ -35,11 +34,11 @@ const siteConfig = {
   favicon: 'img/favicon.png',
   /* colors for website */
   colors: {
-    primaryColor: '#005068',
-    secondaryColor: '#205C3B',
+    primaryColor: '#025268',
+    secondaryColor: '#005068',
   },
   /* custom fonts for website */
-  /*fonts: {
+  fonts: {
     myFont: [
       "Times New Roman",
       "Serif"
@@ -48,21 +47,21 @@ const siteConfig = {
       "-apple-system",
       "system-ui"
     ]
-  },*/
+  },
   // This copyright info is used in /core/Footer.js and blog rss/atom feeds.
   copyright:
     'Copyright © ' +
     new Date().getFullYear() +
-    ' Your Name or Your Company Name',
+    'Yangxiaofu@163.com',
   organizationName: 'xiaofuzi', // or set an env variable ORGANIZATION_NAME
   projectName: 'react-canvas-website', // or set an env variable PROJECT_NAME
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks
     theme: 'default',
   },
-  scripts: ['https://buttons.github.io/buttons.js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/particles.min.js'],
+  scripts: ['https://buttons.github.io/buttons.js'],
   // You may provide arbitrary config keys to be used as needed by your template.
-  repoUrl: 'https://github.com/facebook/test-site',
+  repoUrl: 'https://github.com/xiaofuzi/react-canvas-website',
   /* On page navigation for the current documentation page */
   // onPageNav: 'separate',
 };

@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Build canvas apps using Javascript and React",
+    "tagline": "Build canvas apps and 2d games with React",
     "api": "Basic Components",
     "thebasics": "the basics",
     "doc1": "Latin-ish",
@@ -11,12 +11,13 @@
     "easycanvas": "Easycanvas",
     "doc4": "Other Document",
     "doc5": "Fifth Document",
-    "gettingstarted": "getting started",
-    "guide": "introduction",
+    "gettingstarted": "Getting started",
+    "guide": "Introduction",
+    "Docs": "Docs",
+    "EasyCanvas": "EasyCanvas",
+    "Github": "Github",
     "Guide": "Guide",
     "API": "API",
-    "EasyCanvas": "EasyCanvas",
-    "Help": "Help",
     "First Category": "First Category"
   },
   "pages-strings": {

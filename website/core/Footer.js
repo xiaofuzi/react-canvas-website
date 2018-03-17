@@ -23,7 +23,29 @@ class Footer extends React.Component {
     return (
       <footer className="nav-footer" id="footer">
         <section className="sitemap">
-          <a href={this.props.config.baseUrl} className="nav-home">
+          <div>
+            <h5>Docs</h5>
+            <a href={this.docUrl('gettingstarted.html', this.props.language)}>
+              Getting Started 
+            </a>
+            <a href={this.docUrl('guide.html', this.props.language)}>
+              Guide
+            </a>
+            <a href={this.docUrl('api.html', this.props.language)}>
+              API Reference
+            </a>
+          </div>
+        </section>
+        <section className="copyright">
+          Copyright &copy; {currentYear} Yangxiaofu Inc.
+        </section>
+      </footer>
+    );
+  }
+}
+
+/*
+<a href={this.props.config.baseUrl} className="nav-home">
             {this.props.config.footerIcon && (
               <img
                 src={this.props.config.baseUrl + this.props.config.footerIcon}
@@ -33,19 +55,7 @@ class Footer extends React.Component {
               />
             )}
           </a>
-          <div>
-            <h5>Docs</h5>
-            <a href={this.docUrl('doc1.html', this.props.language)}>
-              Getting Started (or other categories)
-            </a>
-            <a href={this.docUrl('doc2.html', this.props.language)}>
-              Guides (or other categories)
-            </a>
-            <a href={this.docUrl('doc3.html', this.props.language)}>
-              API Reference (or other categories)
-            </a>
-          </div>
-          <div>
+<div>
             <h5>Community</h5>
             <a href={this.pageUrl('users.html', this.props.language)}>
               User Showcase
@@ -75,9 +85,7 @@ class Footer extends React.Component {
               Star
             </a>
           </div>
-        </section>
-
-        <a
+<a
           href="https://code.facebook.com/projects/"
           target="_blank"
           className="fbOpenSource">
@@ -88,12 +96,6 @@ class Footer extends React.Component {
             height="45"
           />
         </a>
-        <section className="copyright">
-          Copyright &copy; {currentYear} Facebook Inc.
-        </section>
-      </footer>
-    );
-  }
-}
+*/
 
 module.exports = Footer;
